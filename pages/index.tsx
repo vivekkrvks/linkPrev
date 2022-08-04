@@ -8,6 +8,7 @@ import { FcSearch } from "react-icons/fc";
 import NavBar from "./Component/NavBar"
 import Footer from "./Component/Footer"
 import { useRouter } from 'next/router'
+var validUrl = require('valid-url');
 const Home = () => {
   const {theme,setTheme} = useTheme()
   const [searchData, setSearchData] = useState("hey");
@@ -20,6 +21,17 @@ const Home = () => {
           }
       })
   }
+  const handleSubmit = () => {
+    console.log(searchData)
+
+    if (validUrl.isUri(searchData)){
+      console.log('Looks like an URI');
+      search()
+  } else {
+      alert('Not a URI');
+  }
+  }
+
   return (
     <>
     {/* <!-- Navbar --> */}
@@ -28,7 +40,7 @@ const Home = () => {
     <div className="flex w-screen h-screen flex-col justify-center items-center ">
         <h1 className="text-4xl md:text-6xl font-bold">
           Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
+          <a className="text-blue-600" href="vivek.org.in">
             LinkPrev
           </a>
         </h1>
@@ -39,10 +51,10 @@ const Home = () => {
     <div className="flex items-center border-2 
     rounded-full py-2
     shadow-sm ">
-      <input type="search" className="flex-grow pl-5 bg-transparent outline-none text-sm text-grey-600
-    placeholder-grey-400" placeholder="Search" aria-label="Search" aria-describedby="button-addon2"/>
+      <input type="search" value={searchData} onChange={e => setSearchData(e.target.value)} className="flex-grow pl-5 bg-transparent outline-none text-sm text-grey-600
+    placeholder-grey-400" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" />
       <button 
-      onClick={search}
+      onClick={handleSubmit}
       className="btn  inline-flex
      h-8 bg-red-400
     text-white rounded-full

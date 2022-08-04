@@ -16,7 +16,7 @@ const SearchResult = () => {
       getData("");
     }, []);
     const getData = async () => {    
-let data = {link:"https://www.aajtak.in/world/story/taiwan-china-fight-missile-fire-america-tension-ntc-1512550-2022-08-04"}
+let data = {link:searchData}
       await axios
         .post(`https://searchkarna.com/api/v1/addition/linkPrev/linkData`,data)
         .then((res) => (setResData(res.data)))
@@ -30,7 +30,7 @@ let data = {link:"https://www.aajtak.in/world/story/taiwan-china-fight-missile-f
     {/* <!-- Navbar --> */}
     <div className="bg-green-100 flex rounded-lg py-5 px-6 m-2 text-base text-green-700 " role="alert">
     
-  Below is the result 
+  Below is the result for {searchData}
 </div>
 <div className="flex">
 
