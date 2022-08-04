@@ -6,6 +6,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "link-preview-generator": "^1.1.0",
+    "link-preview-js": "^3.0.3",
     "next": "latest",
     "next-themes": "^0.2.0",
     "react": "18.1.0",

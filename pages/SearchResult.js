@@ -1,25 +1,22 @@
-import { useState } from "react";
 import { useTheme } from 'next-themes'
-import Image from 'next/image'
-import { FcIdea } from "react-icons/fc";
-import { WiMoonAltWaningCrescent5 } from "react-icons/wi";
-import { FcSearch } from "react-icons/fc";
-
 import NavBar from "./Component/NavBar"
 import Footer from "./Component/Footer"
 import { useRouter } from 'next/router'
-const Home = () => {
+import { getLinkPreview, getPreviewFromContent } from "link-preview-js";
+
+const SearchResult = () => {
+
+  
   const {theme,setTheme} = useTheme()
-  const [searchData, setSearchData] = useState("hey");
   const router = useRouter();
-  const search = () => {
-      router.push({
-          pathname: '/SearchResult',
-          query: {
-              searchData
-          }
-      })
-  }
+    const { searchData } = router.query;
+
+    const getData = () => {
+      // pass the link directly
+getLinkPreview("http://qualifier.co.in/").then((data) =>
+console.debug(data)
+);
+    }
   return (
     <>
     {/* <!-- Navbar --> */}
@@ -27,9 +24,9 @@ const Home = () => {
     {/* <!-- Navbar --> */}
     <div className="flex w-screen h-screen flex-col justify-center items-center ">
         <h1 className="text-4xl md:text-6xl font-bold">
-          Welcome to{' '}
+          Result For{' '}
           <a className="text-blue-600" href="https://nextjs.org">
-            LinkPrev
+          {searchData}
           </a>
         </h1>
      
@@ -42,7 +39,7 @@ const Home = () => {
       <input type="search" className="flex-grow pl-5 bg-transparent outline-none text-sm text-grey-600
     placeholder-grey-400" placeholder="Search" aria-label="Search" aria-describedby="button-addon2"/>
       <button 
-      onClick={search}
+      onClick={() => getData()}
       className="btn  inline-flex
      h-8 bg-red-400
     text-white rounded-full
@@ -59,6 +56,9 @@ const Home = () => {
 </div>
 
   {/* middle */}
+  {/* prev */}
+
+  {/* prev */}
  
     <Footer />
 
@@ -68,4 +68,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default SearchResult
