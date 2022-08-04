@@ -1,69 +1,67 @@
+import { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 import NavBar from "./Component/NavBar"
 import Footer from "./Component/Footer"
+import ResultComp from "./Component/ResultComp"
+import CopyResult from "./Component/CopyResult"
 import { useRouter } from 'next/router'
-import { getLinkPreview, getPreviewFromContent } from "link-preview-js";
+import axios from "axios";
 
-const SearchResult = () => {
-
-  
+const SearchResult = () => {  
   const {theme,setTheme} = useTheme()
   const router = useRouter();
     const { searchData } = router.query;
-
-    const getData = () => {
-      // pass the link directly
-getLinkPreview("http://qualifier.co.in/").then((data) =>
-console.debug(data)
-);
-    }
+    const [resData,setResData] = useState({})
+    useEffect(() => {
+      getData("");
+    }, []);
+    const getData = async () => {    
+let data = {link:"https://www.aajtak.in/world/story/taiwan-china-fight-missile-fire-america-tension-ntc-1512550-2022-08-04"}
+      await axios
+        .post(`https://searchkarna.com/api/v1/addition/linkPrev/linkData`,data)
+        .then((res) => (setResData(res.data)))
+        .catch((err) => console.log(err));
+      console.log(resData)
+    };
   return (
     <>
     {/* <!-- Navbar --> */}
     <NavBar />
     {/* <!-- Navbar --> */}
-    <div className="flex w-screen h-screen flex-col justify-center items-center ">
-        <h1 className="text-4xl md:text-6xl font-bold">
-          Result For{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-          {searchData}
-          </a>
-        </h1>
-     
-  {/* middle */}
-  <div className="  py-10">
-  <div className="mb-3 xl:w-96">
-    <div className="flex items-center border-2 
-    rounded-full py-2
-    shadow-sm ">
-      <input type="search" className="flex-grow pl-5 bg-transparent outline-none text-sm text-grey-600
-    placeholder-grey-400" placeholder="Search" aria-label="Search" aria-describedby="button-addon2"/>
-      <button 
-      onClick={() => getData()}
-      className="btn  inline-flex
-     h-8 bg-red-400
-    text-white rounded-full
-    p-2 cursor-pointer mx-2" type="button" id="button-addon2">
-        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" className="w-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-          <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
-        </svg>
-      </button>
-    </div>
+    <div className="bg-green-100 flex rounded-lg py-5 px-6 m-2 text-base text-green-700 " role="alert">
+      <div class="flex space-x-2 justify-center">
+  <div>
+    <button type="button" class="inline-block mr-4 px-6 pt-2.5 pb-2 bg-blue-600 text-white font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center">
+      <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="download"
+        class="w-3 mr-2" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path fill="currentColor"
+          d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z">
+        </path>
+      </svg>
+      Go Back
+    </button>
   </div>
-  <div className="bg-red-100 rounded-lg py-5 px-6  text-base text-red-700 " role="alert">
-  Invalid Link - Check the Link again
 </div>
+  Below is the result 
 </div>
+<div className="flex">
 
+<ResultComp 
+resData={resData}
+thumbImage={resData?.images?.[0]}
+/>
   {/* middle */}
+  
   {/* prev */}
 
   {/* prev */}
  
-    <Footer />
 
      
     </div>
+
+    <Footer />
+
     </>
   )
 }

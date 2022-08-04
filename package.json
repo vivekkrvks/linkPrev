@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "link-preview-generator": "^1.1.0",
     "link-preview-js": "^3.0.3",
     "next": "latest",
