@@ -4,11 +4,11 @@ import { WiMoonAltWaningCrescent5 } from "react-icons/wi";
 import Image from "next/image";
 import { useRouter } from 'next/router'
 
-function Header() {
+function Header({isHomePage}) {
   const {theme,setTheme} = useTheme()
   const router = useRouter();
   const searchData1 = "https://www.indiatoday.in/science/story/super-earth-with-possibility-for-life-discovered-1983719-2022-08-04"
-  const searchData2 = "https://youtu.be/7V5wAKzesO0"
+  const searchData2 = "https://learnwithvivek.in/top-12-array-methods-in-javascript-1-2-explained-by-vivek-part-18-learn-with-vivek/"
   const sample1 = (searchData) => {
     router.push({
         pathname: '/SearchResult',
@@ -34,15 +34,15 @@ function Header() {
           <div className="navbar-collapse relative flex collapse grow items-center" id="navbarSupportedContentY">
 
             <ul className="navbar-nav mr-auto flex lg:flex lg:flex-row">
-              <li className="nav-item">
-                <a className="nav-link block pr-2 lg:px-2 py-2 hover:text-[#2D88E2] focus:text-[#2D88E2] transition duration-150 ease-in-out"  onClick={() => router.push(`/`)} data-mdb-ripple="true" data-mdb-ripple-color="light">Home Page</a>
+              {!isHomePage &&(<li className="nav-item">
+                <a className="nav-link block pr-2 lg:px-2 py-2 hover:text-[#2D88E2] focus:text-[#2D88E2] transition duration-150 ease-in-out"  onClick={() => router.push(`/`)} data-mdb-ripple="true" data-mdb-ripple-color="light">GO Back to Home Page</a>
+              </li>)}
+             {isHomePage && (<> <li className="nav-item">
+                <a className="nav-link block pr-2 lg:px-2 py-2 hover:text-[#2D88E2] focus:text-[#2D88E2] transition duration-150 ease-in-out" onClick={() => sample1(searchData1)}href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">Sample Data 1</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link block pr-2 lg:px-2 py-2 hover:text-[#2D88E2] focus:text-[#2D88E2] transition duration-150 ease-in-out" onClick={() => sample1(searchData1)}href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">Sample 1</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link block pr-2 lg:px-2 py-2 hover:text-[#2D88E2] focus:text-[#2D88E2] transition duration-150 ease-in-out" onClick={() => sample2(searchData2)}href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">Sample 2</a>
-              </li>
+                <a className="nav-link block pr-2 lg:px-2 py-2 hover:text-[#2D88E2] focus:text-[#2D88E2] transition duration-150 ease-in-out" onClick={() => sample2(searchData2)}href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">Sample Data 2</a>
+              </li></>)}
              
             </ul>
           </div>

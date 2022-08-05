@@ -26,7 +26,9 @@ let data = {link:searchData}
   return (
     <>
     {/* <!-- Navbar --> */}
-    <NavBar />
+    <NavBar 
+    isHomePage={false}
+    />
     {/* <!-- Navbar --> */}
     <div className="bg-green-100 flex rounded-lg py-5 px-6 m-2 text-base text-green-700 " role="alert">
     
