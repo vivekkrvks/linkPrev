@@ -39,7 +39,7 @@ let data = {link:searchData}
 </div>
 <div className="flex">
 
-{(resData?.url && !loading)&&(<ResultComp 
+{(resData?.url )&&(<ResultComp 
 resData={resData}
 thumbImage={resData?.images?.[0]}
 />)}
@@ -48,7 +48,14 @@ thumbImage={resData?.images?.[0]}
     <span class="visually-hidden">Loading...</span>
   </div>
 </div>)}
-
+{(!(resData?.url))&&(
+  <div className='mt-10 mb-20 flex-col justify-center items-center'>
+<h6 className="text-4xl md:text-6xl ml-4 font-bold">
+          Sorry  Not able to get data from this link    <a className="text-blue-600" href={resData?.url}>
+             Try Another Search
+          </a>
+        
+        </h6></div>)}
   {/* middle */}
   
   {/* prev */}
