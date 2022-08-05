@@ -45,10 +45,10 @@ function ResultComp({resData,thumbImage}) {
         </h6>
 
           <div className="grid lg:grid-cols-2">
-          <CopyResult
+          {/* <CopyResult
           title={`Title`}
           value={resData.title}
-          />
+          /> */}
           <CopyResult
           title={`Description`}
           value={resData.description}

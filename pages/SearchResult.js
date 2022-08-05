@@ -55,3 +55,4 @@ thumbImage={resData?.images?.[0]}
 }
 
 export default SearchResult
+
