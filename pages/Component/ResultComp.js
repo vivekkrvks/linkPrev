@@ -20,65 +20,65 @@ function ResultComp({resData,thumbImage}) {
             </div>
           </div>
           <div className="p-6">
-            <h5 className="font-bold text-lg mb-3">{resData.title}</h5>
+            <h5 className="font-bold text-lg mb-3">{resData?.title}</h5>
             <p className=" mb-4">
               <small className='flex'>Published  by
-                <a href="" className="ml-2 mr-2">{resData.siteName}</a>
+                <a href="" className="ml-2 mr-2">{resData?.siteName}</a>
               <img src={resData?.favicons?.[0]} alt={`link favicon`} className="" />
                 
                 </small>
             </p>
             <p className="mb-4 pb-2">
-          {resData.description}
+          {resData?.description}
             </p>
-            <a href={resData.url} data-mdb-ripple="true" data-mdb-ripple-color="light"
+            <a href={resData?.url} data-mdb-ripple="true" data-mdb-ripple-color="light"
               className="inline-block px-6 py-2.5 bg-blue-600  font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Read
               more</a>
           </div>
         </div>
         <div className='col-span-2 '>
         <h6 className="text-4xl md:text-6xl ml-4 font-bold">
-          Data From the   <a className="text-blue-600" href={resData.url}>
+          Data From the   <a className="text-blue-600" href={resData?.url}>
             Link
           </a>
         
         </h6>
 
           <div className="grid lg:grid-cols-2">
-          {/* <CopyResult
-          title={`Title`}
-          value={resData.title}
-          /> */}
           <CopyResult
-          title={`Description`}
-          value={resData.description}
+          myTitle={`Title`}
+          value={resData?.title}
           />
           <CopyResult
-          title={`Url Searched`}
-          value={resData.url}
+          myTitle={`Description`}
+          value={resData?.description}
           />
           <CopyResult
-          title={`Site Name`}
-          value={resData.siteName}
+          myTitle={`Url Searched`}
+          value={resData?.url}
           />
           <CopyResult
-          title={`Link Type`}
-          value={resData.mediaType}
+          myTitle={`Site Name`}
+          value={resData?.siteName}
           />
           <CopyResult
-          title={`Content Type`}
-          value={resData.contentType}
+          myTitle={`Link Type`}
+          value={resData?.mediaType}
           />
           <CopyResult
-          title={`Image`}
+          myTitle={`Content Type`}
+          value={resData?.contentType}
+          />
+          <CopyResult
+          myTitle={`Image`}
           value={resData?.images?.[0]}
           />
           <CopyResult
-          title={`Videos`}
+          myTitle={`Videos`}
           value={resData?.videos?.[0]}
           />
           <CopyResult
-          title={`Favicons`}
+          myTitle={`Favicons`}
           value={resData?.favicons?.[0]}
           />
        

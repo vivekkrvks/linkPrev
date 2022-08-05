@@ -7,13 +7,9 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "link-preview-generator": "^1.1.0",
-    "link-preview-js": "^3.0.3",
     "next": "latest",
     "next-themes": "^0.2.0",
     "react": "18.1.0",
-    "react-alert": "^7.0.3",
-    "react-alert-template-basic": "^1.0.2",
     "react-dom": "18.1.0",
     "react-icons": "^4.4.0",
     "valid-url": "^1.0.9"
