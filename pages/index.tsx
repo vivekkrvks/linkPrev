@@ -11,7 +11,9 @@ import { useRouter } from 'next/router'
 var validUrl = require('valid-url');
 const Home = () => {
   const {theme,setTheme} = useTheme()
-  const [searchData, setSearchData] = useState("hey");
+  const [searchData, setSearchData] = useState("");
+
+  const [showError, setShowError] = useState(false);
   const router = useRouter();
   const search = () => {
       router.push({
@@ -28,7 +30,7 @@ const Home = () => {
       console.log('Looks like an URI');
       search()
   } else {
-      alert('Not a URI');
+    setShowError(true);
   }
   }
 
@@ -50,9 +52,10 @@ const Home = () => {
   <div className="mb-3 xl:w-96">
     <div className="flex items-center border-2 
     rounded-full py-2
-    shadow-sm ">
-      <input type="search" value={searchData} onChange={e => setSearchData(e.target.value)} className="flex-grow pl-5 bg-transparent outline-none text-sm text-grey-600
-    placeholder-grey-400" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" />
+    border-rose-400
+    shadow-lg ">
+      <input type="search" value={searchData} onChange={e => (setSearchData(e.target.value),setShowError(false))} className="flex-grow pl-5 bg-transparent outline-none text-sm text-grey-600
+    placeholder-grey-400" placeholder="Enter the link to Search" aria-label="Search" aria-describedby="button-addon2" />
       <button 
       onClick={handleSubmit}
       className="btn  inline-flex
@@ -65,9 +68,9 @@ const Home = () => {
       </button>
     </div>
   </div>
-  <div className="bg-red-100 rounded-lg py-5 px-6  text-base text-red-700 " role="alert">
+ {showError && ( <div className="bg-red-100 rounded-lg py-5 px-6  text-base text-red-700 " role="alert">
   Invalid Link - Check the Link again
-</div>
+</div>)}
 </div>
 
   {/* middle */}
